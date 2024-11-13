@@ -517,6 +517,12 @@ class _DJConnector:
             operation = " IS " if attribute_filter["operation"] == "=" else " IS NOT "
         else:
             operation = attribute_filter["operation"]
+        
+        if (
+            re.match(r"^datetime.*$", attribute_type)
+            or re.match(r"timestamp", attribute_type)
+        ) and str(attribute_filter["value"]).isnumeric():
+            attribute_filter["value"] = f"FROM_UNIXTIME({attribute_filter['value']})"
 
         if (
             isinstance(attribute_filter["value"], str)

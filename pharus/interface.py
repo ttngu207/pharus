@@ -527,6 +527,7 @@ class _DJConnector:
         if (
             isinstance(attribute_filter["value"], str)
             and not attribute_filter["value"].isnumeric()
+            and not attribute_filter["value"].startswith("FROM_UNIXTIME")
         ):
             value = (
                 f"X'{attribute_filter['value'].replace('-', '')}'"

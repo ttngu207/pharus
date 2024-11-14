@@ -517,7 +517,7 @@ class _DJConnector:
             operation = " IS " if attribute_filter["operation"] == "=" else " IS NOT "
         else:
             operation = attribute_filter["operation"]
-        
+
         if (
             re.match(r"^datetime.*$", attribute_type)
             or re.match(r"timestamp", attribute_type)
